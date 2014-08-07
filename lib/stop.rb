@@ -1,4 +1,4 @@
-class Stop
+class Stop <Train
 
   attr_accessor :station_id, :line_id, :id
 
@@ -6,15 +6,6 @@ class Stop
     @station_id = attributes['station_id']
     @line_id = attributes['line_id']
     @id = attributes['id']
-  end
-
-  def self.all
-    all_stops = []
-    results = DB.exec("SELECT * FROM stops;")
-    results.each do |result|
-      all_stops << Stop.new(result)
-    end
-    all_stops
   end
 
   def save
@@ -29,10 +20,6 @@ class Stop
   def update_line(new_value)
     DB.exec("UPDATE stops SET line_id = '#{new_value}' WHERE id = #{@id};")
     @line_id = new_value
-  end
-
-  def delete
-    DB.exec("DELETE FROM stops WHERE id = '#{@id}';")
   end
 
   def show_times
