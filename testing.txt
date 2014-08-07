@@ -1,0 +1,3 @@
+test_train=# select stations.* from stops join lines on (stops.line_id = lines.id) join stations on (stops.station_id = stations.id) where lines.id = 2;
+
+test_train=# select lines.* from stops join lines on (stops.line_id = lines.id) join stations on (stops.station_id = stations.id) where stations.id =1;
