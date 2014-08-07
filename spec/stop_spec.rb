@@ -22,11 +22,21 @@ describe :Stop do
     expect(@new_stop.line_id).to eq 5
   end
 
-  it 'deletes a stop name' do
+  it 'deletes a stop' do
     @new_stop.save
     @new_stop.delete
-    expect(Stop.all).to eq []
   end
 
+  it 'shows all times at stop' do
+    @new_station_w.save
+    @new_line_r.save
+    new_stop_rw = Stop.new({'line_id' =>@new_line_r.id.to_i, 'station_id'=>@new_station_w.id.to_i})
+    new_stop_rw.save
+    new_time_rw1 = Train_Time.new({'stop_id' => new_stop_rw.id.to_i, 'train_time'=>'12:00'})
+    new_time_rw1.save
+    new_time_rw2 = Train_Time.new({'stop_id' => new_stop_rw.id.to_i, 'train_time'=>'16:00'})
+    new_time_rw2.save
+    expect(new_stop_rw.show_times).to eq ["12:00:00", "16:00:00"]
+  end
 
 end

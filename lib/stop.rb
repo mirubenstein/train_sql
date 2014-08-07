@@ -34,4 +34,14 @@ class Stop
   def delete
     DB.exec("DELETE FROM stops WHERE id = '#{@id}';")
   end
+
+  def show_times
+    results = DB.exec("SELECT * FROM times WHERE stop_id = #{id};")
+    times_arr = []
+    results.each do |result|
+      times_arr << result['train_time']
+    end
+    times_arr
+  end
+
 end
