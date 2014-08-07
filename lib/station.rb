@@ -30,9 +30,14 @@ class Station
     DB.exec("DELETE FROM stations WHERE id = '#{@id}';")
   end
 
-  # def list
-  #   DB.exec("")
-  # end
+  def lines
+    results = DB.exec("SELECT lines.* FROM stops JOIN lines ON (stops.line_id = lines.id) JOIN stations ON (stops.station_id = stations.id) WHERE stations.id =#{@id};")
+    lines_arr = []
+    results.each do |result|
+      lines_arr << result['name']
+    end
+    lines_arr
+  end
 end
 
 

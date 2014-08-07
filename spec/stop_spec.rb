@@ -12,27 +12,21 @@ describe :Stop do
 
   it 'updates station_id for stop' do
     @new_stop.save
-    @new_stop.update('South')
-    expect(@new_stop.name).to eq 'South'
+    @new_stop.update_station(5)
+    expect(@new_stop.station_id).to eq 5
   end
 
   it 'updates line_id for stop' do
     @new_stop.save
-    @new_stop.update('South')
-    expect(@new_stop.name).to eq 'South'
+    @new_stop.update_line(5)
+    expect(@new_stop.line_id).to eq 5
   end
 
-  # it 'deletes a stop name' do
-  #   @new_stop.save
-  #   @new_stop.delete
-  #   expect(Stop.all).to eq []
-  # end
+  it 'deletes a stop name' do
+    @new_stop.save
+    @new_stop.delete
+    expect(Stop.all).to eq []
+  end
 
-  # it 'lists all lines that a stop has' do
-  #   @new_stop_n.save
-  #   @new_line_y.save
-  #   @new_line_b.save
-  #   expect(@new_stop_n.lines).to eq ["Yellow", "Blue"]
-  # end
 
 end

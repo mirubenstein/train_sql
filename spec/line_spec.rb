@@ -22,5 +22,15 @@ describe :Line do
     expect(Line.all).to eq []
   end
 
+  it 'lists all stations that a line has' do
+    @new_station_s.save
+    @new_station_w.save
+    @new_line_b.save
+    new_stop_bs = Stop.new({'line_id' => @new_line_b.id.to_i, 'station_id'=> @new_station_s.id.to_i})
+    new_stop_bs.save
+    new_stop_bw = Stop.new({'line_id' =>@new_line_b.id.to_i, 'station_id'=>@new_station_w.id.to_i})
+    new_stop_bw.save
+    expect(@new_line_b.stations).to eq ["South", "West"]
+  end
 
 end

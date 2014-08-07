@@ -1,5 +1,6 @@
 require 'rspec'
 require 'pg'
+require 'pry'
 require './lib/station'
 require './lib/line'
 require './lib/stop'
